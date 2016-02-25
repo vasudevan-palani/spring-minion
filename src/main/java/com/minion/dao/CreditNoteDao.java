@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.minion.Constants;
 import com.minion.model.CreditNote;
-import com.minion.model.Invoice;
 import com.minion.repo.CreditNoteRepository;
 import com.minion.repo.InvoiceRepository;
 import com.minion.repo.PORepository;

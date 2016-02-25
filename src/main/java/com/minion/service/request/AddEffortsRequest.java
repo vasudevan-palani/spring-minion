@@ -3,14 +3,11 @@ package com.minion.service.request;
 import java.util.ArrayList;
 
 public class AddEffortsRequest {
-	private int userId;
 	private int allocationId;
 	private ArrayList<EffortItem> efforts;
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	
+	public AddEffortsRequest() {
+		efforts = new ArrayList<EffortItem>();
 	}
 	public int getAllocationId() {
 		return allocationId;

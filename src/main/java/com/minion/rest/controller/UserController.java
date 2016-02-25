@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.minion.rest.ErrorCodes;
 import com.minion.rest.request.Request;
 import com.minion.rest.response.Response;
+import com.minion.service.ErrorCodes;
 import com.minion.service.ErrorMsg;
 import com.minion.service.User;
 import com.minion.service.exception.InvalidUserException;
@@ -40,6 +40,7 @@ public class UserController extends BaseController {
 			
 			response.setErrorcode(ErrorCodes.SUCCESS);
 			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.USER_LOGIN_SUCCESS));
+			response.setRedirectUrl("/home.html");
 			
 		} catch (InvalidUserException exception) {
 			response.setErrorcode(exception.getErrorCode());

@@ -3,7 +3,6 @@ package com.minion.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.minion.model.PO;
 import com.minion.model.Project;
 import com.minion.repo.PORepository;
 import com.minion.repo.ProjectRepository;

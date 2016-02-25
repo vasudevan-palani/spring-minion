@@ -7,6 +7,9 @@ public class Response {
 	private String infoMsg;
 	private String alertMsg;
 	private String redirectUrl;
+	
+	private Object object;
+	
 	public String getErrorcode() {
 		return errorcode;
 	}
@@ -42,6 +45,12 @@ public class Response {
 	}
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
+	}
+	public Object getObject() {
+		return object;
+	}
+	public void setObject(Object object) {
+		this.object = object;
 	}
 	
 	

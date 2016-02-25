@@ -1,6 +1,6 @@
 package com.minion.service.request;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class EffortItem {
 	private Date date;

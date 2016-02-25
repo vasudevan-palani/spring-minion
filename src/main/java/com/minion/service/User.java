@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.minion.repo.UserRepository;
-import com.minion.rest.ErrorCodes;
 import com.minion.service.exception.InvalidUserException;
 
 @Component

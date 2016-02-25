@@ -1,11 +1,8 @@
 package com.minion.dao;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.minion.Constants;
 import com.minion.ResourceBean;
 import com.minion.model.Invoice;
 import com.minion.model.InvoiceUser;
