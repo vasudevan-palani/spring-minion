@@ -2,7 +2,9 @@ package com.minion.loader.excel;
 
 import java.sql.Date;
 
-public class KronosBean {
+import com.minion.loader.RowBean;
+
+public class KronosBean implements RowBean{
 	
 	private String name;
 	private String id;

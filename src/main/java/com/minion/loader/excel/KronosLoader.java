@@ -1,17 +1,22 @@
 package com.minion.loader.excel;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.minion.loader.RowBean;
 
 public class KronosLoader extends ExcelLoader{
+	
+	private ArrayList<KronosBean> beans = null;
+	
+	private Iterator<KronosBean> beanIterator = null;
 	
 	public KronosLoader(int sheetNo, long startRowNo){
 		super(sheetNo,startRowNo);
@@ -29,9 +34,12 @@ public class KronosLoader extends ExcelLoader{
 		super();
 	}
 	
-	public List<KronosBean> load(String location){
+	public void load(String location){
+		beans = new ArrayList<KronosBean>();
+		
+		beanIterator = null;
+		
 		this.location = location;
-		List<KronosBean> kronosSheets = new ArrayList<KronosBean>();	
 
 		try{
 			
@@ -96,7 +104,7 @@ public class KronosLoader extends ExcelLoader{
 							 }
 						 }
 					}
-					kronosSheets.add(bean);
+					beans.add(bean);
 				}		
 			}
 			
@@ -110,16 +118,20 @@ public class KronosLoader extends ExcelLoader{
 			System.out.println(ioe.getMessage());
 			ioe.printStackTrace();
 		}
-		return kronosSheets;
 	}
 	
-	public static void main(String args[]){
-		KronosLoader koronosLoader  = new KronosLoader(-1,19);
-		for(KronosBean bean : koronosLoader.load("G:/Play/vasu/Jan 2016.xls")){
-			System.out.println(bean);
-			System.out.println(bean.toString());
+	@Override
+	public RowBean getNextRow() {
+		if(beanIterator == null){
+			beanIterator = beans.iterator();
 		}
-		
+		if(beanIterator.hasNext()){
+			return (RowBean) beanIterator.next();			
+		}
+		else
+		{
+			return null;			
+		}
 	}
 	
 	

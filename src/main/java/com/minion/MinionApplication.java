@@ -13,13 +13,12 @@ import java.util.Iterator;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
 
 import com.minion.dao.CreditNoteDao;
 import com.minion.dao.InvoiceDao;
@@ -29,6 +28,7 @@ import com.minion.dao.PORolesDao;
 import com.minion.dao.ProjectDao;
 import com.minion.dao.UserDao;
 import com.minion.loader.BillingSheetLoader;
+import com.minion.loader.Loader;
 import com.minion.loader.LoadingException;
 import com.minion.loader.POLoader;
 import com.minion.model.CreditNote;
@@ -73,6 +73,19 @@ public class MinionApplication extends SpringBootServletInitializer {
 
 	@Autowired
 	private PORolesDao poRolesDao;
+	
+	@Autowired
+	private ApplicationContext appContext;
+	
+	
+
+	public ApplicationContext getAppContext() {
+		return appContext;
+	}
+
+	public void setAppContext(ApplicationContext appContext) {
+		this.appContext = appContext;
+	}
 
 	public PORolesDao getPoRolesDao() {
 		return poRolesDao;
@@ -135,8 +148,9 @@ public class MinionApplication extends SpringBootServletInitializer {
 	public String run() {
 
 		try {
-			readInvoices();
-		} catch (NumberFormatException | ParseException e) {
+			//readInvoices();
+			loadKronos();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -146,6 +160,12 @@ public class MinionApplication extends SpringBootServletInitializer {
 		return "";
 	}
 
+	
+	public void loadKronos(){
+		Loader kronosldr = (Loader) appContext.getBean("kronosEffortLoader");
+		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\July 2015.xls");
+	}
+	
 	private void loadBillingSheets() {
 		String filename = "C:/Vasu/tracfone-operations/billing sheets/standard/Billing-Sheet-Sep-2015.csv";
 		BillingSheetLoader loader = new BillingSheetLoader(filename);

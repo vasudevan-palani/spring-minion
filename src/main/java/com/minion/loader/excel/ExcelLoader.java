@@ -9,9 +9,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.minion.loader.Loader;
+import com.minion.loader.FileLoader;
 
-public abstract class ExcelLoader implements Loader{
+public abstract class ExcelLoader implements FileLoader{
 
 	protected String location;
 	protected int sheetNo ;
