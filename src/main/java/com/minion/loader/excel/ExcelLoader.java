@@ -38,7 +38,7 @@ public abstract class ExcelLoader implements FileLoader{
 
 
 	public ExcelLoader() {
-		this(2);
+		this(-1);
 	}
 
 
@@ -48,10 +48,11 @@ public abstract class ExcelLoader implements FileLoader{
 		FileInputStream fis = new FileInputStream(location);
 		
 		if(location!=null && location.contains(".")){
-			if(location.substring(location.lastIndexOf('.')+1).equals("xlsx")){
+			String subString = location.substring(location.lastIndexOf('.')+1);
+			if(subString.equalsIgnoreCase("xlsx")|| subString.equalsIgnoreCase("xlsm")){
 				workbook = new XSSFWorkbook(fis);
 			}
-			else if(location.substring(location.lastIndexOf('.')+1).equals("xls")){
+			else if(subString.equalsIgnoreCase("xls")){
 				workbook = new HSSFWorkbook(fis);
 			}
 			else{

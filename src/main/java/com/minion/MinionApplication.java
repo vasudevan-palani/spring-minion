@@ -149,7 +149,8 @@ public class MinionApplication extends SpringBootServletInitializer {
 
 		try {
 			//readInvoices();
-			loadKronos();
+			//loadKronos();
+			loadInvoice();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,6 +171,11 @@ public class MinionApplication extends SpringBootServletInitializer {
 //		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Nov 2015.xls");
 //		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Dec 2015.xls");
 //		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Jan 2016.xls");
+	}
+	
+	public void loadInvoice(){
+		Loader invoiceLdr = (Loader) appContext.getBean("invoiceLoader");
+		invoiceLdr.load("C:/Users/prabh/Desktop/invoice_merged_v1.1.xlsm");
 	}
 	
 	private void loadBillingSheets() {
