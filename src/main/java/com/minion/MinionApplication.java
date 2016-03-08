@@ -163,7 +163,13 @@ public class MinionApplication extends SpringBootServletInitializer {
 	
 	public void loadKronos(){
 		Loader kronosldr = (Loader) appContext.getBean("kronosEffortLoader");
-		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\July 2015.xls");
+//		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\July 2015.xls");
+//		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Aug 2015.xls");
+//		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Sep 2015.xls");
+		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Oct 2015.xls");
+//		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Nov 2015.xls");
+//		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Dec 2015.xls");
+//		kronosldr.load("C:\\Vasu\\tracfone-operations\\kronos-hours\\Jan 2016.xls");
 	}
 	
 	private void loadBillingSheets() {
