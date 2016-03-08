@@ -229,7 +229,7 @@ public class MinionApplication extends SpringBootServletInitializer {
 	}
 
 	private void readInvoices() throws NumberFormatException, ParseException {
-		File directory = new File("c:/vasu/tracfone-operations/yearlyInvoices");
+		File directory = new File("c:/vasu/tracfone-operations/invoices");
 
 		File[] fList = directory.listFiles();
 
@@ -367,15 +367,15 @@ public class MinionApplication extends SpringBootServletInitializer {
 //					System.out.println(vals.get("RESOURCE_" + i));
 //				}
 
-				// ArrayList<ResourceBean> beans = updateUsers(vals);
-				//
-				// updateProjects(vals);
-				//
-				// updatePOs(vals);
-				//
-				// updateInvoice(vals, beans);
-				//
-				// updateCreditNotes(vals, beans);
+				 ArrayList<ResourceBean> beans = updateUsers(vals);
+				
+				 updateProjects(vals);
+				
+				 updatePOs(vals);
+				
+				 updateInvoice(vals, beans);
+				
+				 updateCreditNotes(vals, beans);
 			}
 
 			// Always close files.
@@ -535,9 +535,9 @@ public class MinionApplication extends SpringBootServletInitializer {
 				}
 				hours = Float.parseFloat(splits[namedone + 2].replaceAll(",", ""));
 				;
-				float rate = Float.parseFloat(splits[namedone + 4].replaceAll(",", ""));
+				float rate = Float.parseFloat(splits[namedone + 4].replaceAll(",", "").replaceAll("\\$", ""));
 
-				float totalCost = Float.parseFloat(splits[namedone + 5].replaceAll(",", ""));
+				float totalCost = Float.parseFloat(splits[namedone + 5].replaceAll(",", "").replaceAll("\\$", ""));
 
 				System.out.println(lastname + "," + firstname);
 

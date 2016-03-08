@@ -1,5 +1,7 @@
 package com.minion.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -72,13 +74,12 @@ public class PODao {
 
 	public Integer createPOIfNotExists(String po_number) {
 
-		PO po = poRepo.findByPoNumber(po_number);
+		PO po = this.findByPoNumber(po_number);
 
 		if (po != null) {
 			System.out.println("PO Exists : " + po_number);
 			return po.getId();
 		} else {
-
 			po = new PO();
 			po.setPoNumber(po_number);
 			poRepo.save(po);
@@ -90,7 +91,11 @@ public class PODao {
 
 	public PO findByPoNumber(String poNumber) {
 		
-		return poRepo.findByPoNumber(poNumber);
+		List<PO> pos = poRepo.findByPoNumber(poNumber);
+		if(pos != null && pos.size() > 0){
+			return pos.get(0);
+		}
+		return null;
 	}
 
 	public void updatePO(POBean poBean) {

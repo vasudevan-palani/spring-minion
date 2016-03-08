@@ -60,9 +60,4 @@ public class PORolesDao {
 
 	}
 
-	public PO findByPoNumber(String poNumber) {
-		
-		return poRepo.findByPoNumber(poNumber);
-	}
-
 }

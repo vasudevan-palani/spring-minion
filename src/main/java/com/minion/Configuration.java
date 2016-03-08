@@ -9,6 +9,7 @@ import com.minion.loader.excel.KronosBeanRowTransformer;
 import com.minion.loader.excel.KronosLoader;
 import com.minion.repo.KronosHoursRepository;
 import com.minion.repo.KronosSheetsRepository;
+import com.minion.repo.KronosUserMappingsRepository;
 import com.minion.repo.UserRepository;
 
 @org.springframework.context.annotation.Configuration
@@ -26,6 +27,8 @@ public class Configuration {
 		tf.setKronosHoursrepo(cxt.getBean(KronosHoursRepository.class));
 		tf.setUserRepo(cxt.getBean(UserRepository.class));
 		tf.setKronosSheetsRepo(cxt.getBean(KronosSheetsRepository.class));
+		
+		tf.setKronosUserMappingRepo(cxt.getBean(KronosUserMappingsRepository.class));
 
 		ld.setRowTransformer(tf);
 		return ld;
