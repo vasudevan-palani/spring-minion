@@ -175,7 +175,7 @@ public class MinionApplication extends SpringBootServletInitializer {
 	
 	public void loadInvoice(){
 		Loader invoiceLdr = (Loader) appContext.getBean("invoiceLoader");
-		invoiceLdr.load("C:/Users/prabh/Desktop/invoice_merged_v1.1.xlsm");
+		invoiceLdr.load("C:\\Vasu\\tracfone-operations\\invoice_digitize\\invoice_merged_v1.1_test.xlsm");
 	}
 	
 	private void loadBillingSheets() {

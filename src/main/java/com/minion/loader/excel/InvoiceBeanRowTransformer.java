@@ -1,110 +1,73 @@
 package com.minion.loader.excel;
 
-import java.util.List;
-
-import org.springframework.boot.logging.LogLevel;
-import org.springframework.stereotype.Component;
-
-import com.minion.Utils;
 import com.minion.loader.RowBean;
 import com.minion.loader.RowTransformer;
-import com.minion.model.InvoiceSheets;
-import com.minion.model.User;
-import com.minion.repo.InvoiceSheetsRepository;
-import com.minion.repo.UserRepository;
+import com.minion.service.Invoice;
+import com.minion.service.request.CreateOrUpdateInvoiceRequest;
+import com.minion.service.request.CreateOrUpdateInvoiceUserItemRequest;
+import com.minion.service.request.QueryInvoiceRequest;
 
-@Component
 public class InvoiceBeanRowTransformer implements RowTransformer {
 
-	private UserRepository userRepo;
-	private InvoiceSheetsRepository invoiceSheetsRepo;
+	private Invoice invoiceService;
 
-
-	public UserRepository getUserRepo() {
-		return userRepo;
+	public Invoice getInvoiceService() {
+		return invoiceService;
 	}
 
-	public void setUserRepo(UserRepository userRepo) {
-		this.userRepo = userRepo;
-	}
-
-	public InvoiceSheetsRepository getInvoiceSheetsRepo() {
-		return invoiceSheetsRepo;
-	}
-
-	public void setInvoiceSheetsRepo(InvoiceSheetsRepository invoiceSheetsRepo) {
-		this.invoiceSheetsRepo = invoiceSheetsRepo;
+	public void setInvoiceService(Invoice invoiceService) {
+		this.invoiceService = invoiceService;
 	}
 
 	@Override
 	public void transform(RowBean row) {
 		InvoiceBean bean = (InvoiceBean) row;
 
-		User user = findUser(bean.getFullName());
+		// Steps
+		// 1. Find if invoice exists
+		// 1.1 If Invoice exists -> check if invoice params are up to date,
+		// else, update it
+		// 1.2 If Invoice doesnt exist -> create them
+		// 2. Find for the invoice above, if the corresponding invoice User
+		// exists
+		// 2.1 If the invoice user exists -> check if all the attributes are
+		// updated else, update it
+		// 2.2 If it doesnt exist , create them
 
-		if (user == null) {
-			Utils.log(LogLevel.ERROR, "User not found :" + bean.getFullName());
-		} else {
-			Utils.log(LogLevel.INFO, "User found :" + bean.getFullName() + " : " + user.getId());
-		}
+		QueryInvoiceRequest invoiceRequest = new QueryInvoiceRequest();
+		invoiceRequest.setInvoiceNumber(bean.getInvoiceNum());
 
-		InvoiceSheets is = new InvoiceSheets();
-		List<InvoiceSheets> isList = null;
-
-		is.setCreated(new java.sql.Date((new java.util.Date()).getTime()));
-		is.setStartDate(bean.getStartDate());
-		is.setFullName(bean.getFullName());
-
-		isList = invoiceSheetsRepo.findObject(is.getStartDate(), is.getInvoiceNum(), is.getFullName());
-
-		if (isList.size() <= 0) {
-			invoiceSheetsRepo.save(is);
-		}
+		updateInvoice(bean);
+		updateInvoiceUserItem(bean);
+		
 	}
 
-	private User findUser(String name) {
-		String[] names = name.split(",");
-		User user = null;
-		if (names.length == 2) {
-			Utils.log(LogLevel.DEBUG, "Trying to find user " + names[0] + "," + names[1]);
-			user = userRepo.findByFirstNameAndLastName(names[0], names[1]);
+	private void updateInvoiceUserItem(InvoiceBean bean) {
+		CreateOrUpdateInvoiceUserItemRequest request = new CreateOrUpdateInvoiceUserItemRequest();
 
-			List<User> users;
+		// Populate the request
+		//
+		request.setEmpId(bean.getEmpId());
+		request.setBillingRate(bean.getUnitPrice());
+		request.setHours(bean.getQtyInvoiced());
+		request.setTotal(bean.getAmount());
+		request.setInvoiceNumber(bean.getInvoiceNum());
 
-			if (user == null) {
-				user = userRepo.findByFirstNameAndLastName(names[1], names[0]);
-			}
+		invoiceService.createOrUpdateInvoiceUserItem(request);
 
-			if (user == null) {
-				users = userRepo.findByLastName(names[0]);
-				if (users != null && users.size() > 0) {
-					user = users.get(0);
-				}
-			}
-			if (user == null) {
-				users = userRepo.findByFirstName(names[1]);
-				if (users != null && users.size() > 0) {
-					user = users.get(0);
-				}
-			}
-			if (user == null) {
-				user = userRepo.findByFirstNameAndLastName(names[1], names[0]);
-			}
-
-			if (user == null) {
-				users = userRepo.findByLastName(names[0]);
-				if (users != null && users.size() > 0) {
-					user = users.get(0);
-				}
-			}
-			if (user == null) {
-				users = userRepo.findByFirstName(names[1]);
-				if (users != null && users.size() > 0) {
-					user = users.get(0);
-				}
-			}
-		}
-		return user;
 	}
 
+	private void updateInvoice(InvoiceBean bean) {
+		CreateOrUpdateInvoiceRequest request = new CreateOrUpdateInvoiceRequest();
+
+		// Populate the request
+		//
+		request.setEndDate(bean.getEndDate());
+		request.setPoNumber(bean.getPoNum());
+		request.setInvoiceNumber(bean.getInvoiceNum());
+		request.setStartDate(bean.getStartDate());
+
+		invoiceService.createOrUpdateInvoice(request);
+
+	}
 }

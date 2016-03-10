@@ -9,5 +9,7 @@ import com.minion.model.Project;
 public interface ProjectRepository extends CrudRepository<Project, Serializable >{
 
 	Project findByProjectId(String projectId);
+
+	Project findById(Integer projectId);
 	
 }

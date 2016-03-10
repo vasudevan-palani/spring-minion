@@ -14,8 +14,11 @@ public class Invoice {
 	@GeneratedValue
 	private Integer id;
 
-	private Date start_date;
-	private Date end_date;
+	@Column(name="start_date")
+	private Date startDate;
+	
+	@Column(name="end_date")
+	private Date endDate;
 
 	@Column(name="project_id")
 	private Integer projectId;
@@ -26,22 +29,38 @@ public class Invoice {
 	@Column(name = "invoice_id")
 	private String invoiceId;
 	
-	private String total;
+	private Float total;
 	private Integer status;
 	
 	@Column(name="invoice_file")
 	private String invoiceFile;
 
-	private Date invoice_date;
+	@Column(name="invoice_date")
+	private Date invoiceDate;
 	
-	
-	
-	public Date getInvoice_date() {
-		return invoice_date;
+
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setInvoice_date(Date invoice_date) {
-		this.invoice_date = invoice_date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getInvoiceDate() {
+		return invoiceDate;
+	}
+
+	public void setInvoiceDate(Date invoiceDate) {
+		this.invoiceDate = invoiceDate;
 	}
 
 	public Integer getId() {
@@ -52,27 +71,11 @@ public class Invoice {
 		this.id = id;
 	}
 
-	public Date getStart_date() {
-		return start_date;
-	}
-
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
-	}
-
-	public Date getEnd_date() {
-		return end_date;
-	}
-
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
-	}
-
-	public String getTotal() {
+	public Float getTotal() {
 		return total;
 	}
 
-	public void setTotal(String total) {
+	public void setTotal(Float total) {
 		this.total = total;
 	}
 
@@ -84,13 +87,8 @@ public class Invoice {
 		this.status = status;
 	}
 
-
 	public String getInvoiceId() {
 		return invoiceId;
-	}
-
-	public void setInvoice_id(String invoiceId) {
-		this.invoiceId = invoiceId;
 	}
 
 	public String getInvoiceFile() {
@@ -120,7 +118,5 @@ public class Invoice {
 	public void setPoId(Integer poId) {
 		this.poId = poId;
 	}
-
-	
 
 }

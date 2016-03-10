@@ -103,22 +103,22 @@ public class InvoiceDao {
 		} else {
 
 			invoice = new Invoice();
-			invoice.setInvoice_id(invoiceId);
+			invoice.setInvoiceId(invoiceId);
 			if (endDate != null)
-				invoice.setEnd_date(endDateformatter.parse(endDate));
+				invoice.setEndDate(endDateformatter.parse(endDate));
 			if (startDate != null) {
 				System.out.println(startDate);
 				
-				invoice.setStart_date(startDateformatter.parse(startDate));
+				invoice.setStartDate(startDateformatter.parse(startDate));
 			}
 			if (invoiceDate != null) {
 				System.out.println(invoiceDate);
 				
-				invoice.setInvoice_date(invoiceDateformatter.parse(invoiceDate));
+				invoice.setInvoiceDate(invoiceDateformatter.parse(invoiceDate));
 			}
 			invoice.setPoId(poId);
 			invoice.setProjectId(projectId);
-			invoice.setTotal(total+"");
+			invoice.setTotal(total);
 			invoice.setInvoiceFile(invoiceFile);
 			invoice.setStatus(statusRepo.findByName(Constants.NEW_STATUS).getId());
 			invoiceRepo.save(invoice);
@@ -128,4 +128,14 @@ public class InvoiceDao {
 
 	}
 
+	public Invoice findInvoiceByInvoiceNumber(String invoiceNumber) {
+
+		return invoiceRepo.findByInvoiceId(invoiceNumber);
+	}
+
+	public void save(com.minion.model.Invoice invoice) {
+		invoiceRepo.save(invoice);
+		
+	}
+	
 }

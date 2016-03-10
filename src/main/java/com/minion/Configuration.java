@@ -14,6 +14,7 @@ import com.minion.repo.KronosHoursRepository;
 import com.minion.repo.KronosSheetsRepository;
 import com.minion.repo.KronosUserMappingsRepository;
 import com.minion.repo.UserRepository;
+import com.minion.service.Invoice;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
@@ -43,8 +44,7 @@ public class Configuration {
 		ld.setFileLoader(new InvoiceLoader(0, 2));
 
 		InvoiceBeanRowTransformer tf = new InvoiceBeanRowTransformer();
-		tf.setUserRepo(cxt.getBean(UserRepository.class));
-		tf.setInvoiceSheetsRepo(cxt.getBean(InvoiceSheetsRepository.class));
+		tf.setInvoiceService(cxt.getBean(Invoice.class));
 
 		ld.setRowTransformer(tf);
 		return ld;

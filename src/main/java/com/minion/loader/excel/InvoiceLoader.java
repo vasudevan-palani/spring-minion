@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.springframework.boot.logging.LogLevel;
 
+import com.minion.Utils;
 import com.minion.loader.RowBean;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class InvoiceLoader extends ExcelLoader {
 
@@ -84,23 +83,20 @@ public class InvoiceLoader extends ExcelLoader {
 							case 2:
 								bean.setInvoiceNum(cell.getStringCellValue());
 								break;
-							case 7:
-								bean.setPoNum(cell.getStringCellValue());
-								break;
 							}
 						} else if (Cell.CELL_TYPE_NUMERIC == cell.getCellType()) {
 							switch (cell.getColumnIndex()) {
 							case 3:
-								bean.setQtyInvoiced(cell.getNumericCellValue());
+								bean.setQtyInvoiced(new Float(cell.getNumericCellValue()));
 								break;
 							case 4:
-								bean.setUnitPrice(cell.getNumericCellValue());
+								bean.setUnitPrice(Math.round(new Float(cell.getNumericCellValue())));
 								break;
 							case 5:
-								bean.setAmount(cell.getNumericCellValue());
+								bean.setAmount(new Float(cell.getNumericCellValue()));
 								break;
 							case 6:
-								bean.setInvoiceAmt(cell.getNumericCellValue());
+								bean.setInvoiceAmt(new Float(cell.getNumericCellValue()));
 								break;
 							case 8:
 								bean.setStartDate(new java.sql.Date(cell.getDateCellValue().getTime()));
@@ -108,9 +104,16 @@ public class InvoiceLoader extends ExcelLoader {
 							case 9:
 								bean.setEndDate(new java.sql.Date(cell.getDateCellValue().getTime()));
 								break;
+							case 7:
+								bean.setPoNum(Math.round(cell.getNumericCellValue())+"");
+								break;
+							case 15:
+								bean.setEmpId(Math.round(cell.getNumericCellValue())+"");
+								break;								
 							}
 						}
 					}
+					Utils.log(LogLevel.TRACE, bean.toString());
 					beans.add(bean);
 				}
 			}

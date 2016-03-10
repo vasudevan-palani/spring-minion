@@ -87,4 +87,8 @@ public class ProjectDao {
 		return projectRepo.findByProjectId(projectId);
 	}
 
+	public Project findById(Integer projectId) {
+		return projectRepo.findById(projectId);
+	}
+
 }

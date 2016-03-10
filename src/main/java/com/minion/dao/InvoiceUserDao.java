@@ -91,15 +91,24 @@ public class InvoiceUserDao {
 			invoice = new InvoiceUser();
 			invoice.setInvoiceId(inv.getId());
 			invoice.setUserId(bean.getId());
-			invoice.setHours(Math.round(bean.getHours()));
-			invoice.setBilling_rate(Math.round(bean.getBillingRate()));
-			invoice.setTotal((Math.round(bean.getTotal())));
+			invoice.setHours(bean.getHours());
+			invoice.setBillingRate(Math.round(bean.getBillingRate()));
+			invoice.setTotal(bean.getTotal());
 
 			invoiceUserRepo.save(invoice);
 			System.out.println("InvoiceUser Created : " + invoice.getId());
 			return invoice;
 		}
 
+	}
+
+	public InvoiceUser findbyInvoiceIdAndUserId(Integer invoiceId, Integer userId) {
+		return invoiceUserRepo.findByInvoiceIdAndUserId(invoiceId, userId);
+	}
+
+	public void save(InvoiceUser invoiceUser) {
+		
+		invoiceUserRepo.save(invoiceUser);
 	}
 
 }
