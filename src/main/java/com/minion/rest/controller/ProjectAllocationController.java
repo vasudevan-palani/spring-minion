@@ -85,7 +85,7 @@ public class ProjectAllocationController extends BaseController {
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 
-	@CrossOrigin(origins = "http://localhost:8887")
+	@CrossOrigin(origins = "http://knowinminutes.com")
 	@RequestMapping(produces = "application/json", value = "/index",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> getUserAllocation(@RequestBody Request request) {
 		Response response = new Response();

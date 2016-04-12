@@ -66,7 +66,7 @@ public class EffortController extends BaseController {
 		this.userService = authUser;
 	}
 
-	@CrossOrigin(origins = "http://localhost:8887")
+	@CrossOrigin(origins = "http://knowinminutes.com")
 	@RequestMapping(produces = "application/json", value = "/add",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> add(@RequestBody AddEffortsRequest request) {
 		Response response = new Response();
@@ -85,7 +85,7 @@ public class EffortController extends BaseController {
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:8887")
+	@CrossOrigin(origins = "http://knowinminutes.com")
 	@RequestMapping(produces = "application/json", value = "/getEfforts",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> getEfforts(@RequestBody GetEffortsRequest request) {
 		Response response = new Response();

@@ -34,7 +34,7 @@ public class UserController extends BaseController {
 		this.userService = authUser;
 	}
 
-	@CrossOrigin(origins = "http://localhost:8887")
+	@CrossOrigin(origins = "http://knowinminutes.com")
 	@RequestMapping(produces = "application/json", value = "/login",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> login(@RequestBody Request request) {
 		Response response = new Response();
