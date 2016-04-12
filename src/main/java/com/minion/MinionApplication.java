@@ -150,14 +150,14 @@ public class MinionApplication extends SpringBootServletInitializer {
 		try {
 			//readInvoices();
 			//loadKronos();
-			loadInvoice();
+			//loadInvoice();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// loadBillingSheets();
 		// findFiles();
-		System.exit(1);
+		//System.exit(1);
 		return "";
 	}
 

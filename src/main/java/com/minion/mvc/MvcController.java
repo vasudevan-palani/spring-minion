@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.minion.service.MinionServiceException;
 import com.minion.service.User;
+
 
 @Controller
 public class MvcController {
@@ -32,7 +34,8 @@ public class MvcController {
 		}
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:8887")
+	@RequestMapping(value = "/login", method = {RequestMethod.POST,RequestMethod.OPTIONS})
 	public ModelAndView doLogin(@RequestParam("empId") String empId, @RequestParam("password") String password,
 			Model model, HttpSession session) {
 

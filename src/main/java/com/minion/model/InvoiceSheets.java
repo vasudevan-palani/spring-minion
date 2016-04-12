@@ -3,10 +3,11 @@ package com.minion.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity(name = "invoice_sheets")
+@Entity(name = "invoice_sheets")
 public class InvoiceSheets {
 
 	@Id

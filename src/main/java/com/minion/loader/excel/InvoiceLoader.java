@@ -139,7 +139,7 @@ public class InvoiceLoader extends ExcelLoader {
 		}
 	}
 	
-	public static void main(String args[]){
+	public static void main1(String args[]){
 		InvoiceLoader loader = new InvoiceLoader();
 		loader.load("C:/Users/prabh/Desktop/invoice_merged_v1.1.xlsm");
 		for(InvoiceBean bean : loader.beans){

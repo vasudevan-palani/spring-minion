@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minion.model.view.UserProjectAllocation;
@@ -83,7 +85,8 @@ public class ProjectAllocationController extends BaseController {
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 
-	@RequestMapping(produces = "application/json", value = "/index")
+	@CrossOrigin(origins = "http://localhost:8887")
+	@RequestMapping(produces = "application/json", value = "/index",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> getUserAllocation(@RequestBody Request request) {
 		Response response = new Response();
 		try {
