@@ -1,20 +1,16 @@
-package com.minion.service.request;
+package com.minion.service.bean.request;
 
-public class InvoiceUser {
-	private String invoiceNumer;
+public class AddInvoiceUserItemRequest {
+	private String invoiceNumber;
 	private String empId;
 	private Float hours;
 	private Integer billingRate;
 	private Float total;
-	
-	private Integer invoiceId;
-	private Integer userId;
-	
-	public String getInvoiceNumer() {
-		return invoiceNumer;
+	public String getInvoiceNumber() {
+		return invoiceNumber;
 	}
-	public void setInvoiceNumer(String invoiceNumer) {
-		this.invoiceNumer = invoiceNumer;
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
 	}
 	public String getEmpId() {
 		return empId;
@@ -39,18 +35,6 @@ public class InvoiceUser {
 	}
 	public void setTotal(Float total) {
 		this.total = total;
-	}
-	public Integer getInvoiceId() {
-		return invoiceId;
-	}
-	public void setInvoiceId(Integer invoiceId) {
-		this.invoiceId = invoiceId;
-	}
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 	
 }

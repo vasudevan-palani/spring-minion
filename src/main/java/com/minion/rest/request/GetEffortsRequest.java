@@ -34,8 +34,8 @@ public class GetEffortsRequest extends Request{
 		this.endDate = endDate;
 	}
 
-	public com.minion.service.request.GetEffortsRequest getServiceRequest() {
-		com.minion.service.request.GetEffortsRequest request= new com.minion.service.request.GetEffortsRequest();
+	public com.minion.service.bean.request.GetEffortsRequest getServiceRequest() {
+		com.minion.service.bean.request.GetEffortsRequest request= new com.minion.service.bean.request.GetEffortsRequest();
 		request.setAllocationId(getAllocationId());
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

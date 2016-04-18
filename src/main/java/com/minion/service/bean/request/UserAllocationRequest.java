@@ -1,4 +1,4 @@
-package com.minion.service.request;
+package com.minion.service.bean.request;
 
 public class UserAllocationRequest {
 

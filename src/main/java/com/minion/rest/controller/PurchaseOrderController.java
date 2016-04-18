@@ -11,25 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.minion.rest.request.AddEffortsRequest;
-import com.minion.rest.request.GetEffortsRequest;
+import com.minion.rest.request.AddPurchaseOrderRequest;
+import com.minion.rest.request.SearchPurchaseOrderRequest;
 import com.minion.rest.response.Response;
-import com.minion.service.Efforts;
+import com.minion.rest.response.SearchPurchaseOrderResponse;
 import com.minion.service.ErrorCodes;
 import com.minion.service.ErrorMsg;
 import com.minion.service.MinionServiceException;
+import com.minion.service.PurchaseOrder;
 import com.minion.service.User;
-import com.minion.service.bean.EffortItem;
+import com.minion.service.bean.PurchaseOrderBean;
+
 
 @RestController
-@RequestMapping("/efforts")
-public class EffortController extends BaseController {
+@RequestMapping("/purchaseorders")
+public class PurchaseOrderController extends BaseController {
 
 	@Autowired
 	private User userService;
 
 	@Autowired
-	private Efforts effortService;
+	private PurchaseOrder poService;
 
 	@Autowired
 	private ErrorMsg errorMsgs;
@@ -40,14 +42,6 @@ public class EffortController extends BaseController {
 
 	public void setUserService(User userService) {
 		this.userService = userService;
-	}
-
-	public Efforts getEffortService() {
-		return effortService;
-	}
-
-	public void setEffortService(Efforts effortService) {
-		this.effortService = effortService;
 	}
 
 	public ErrorMsg getErrorMsgs() {
@@ -66,44 +60,41 @@ public class EffortController extends BaseController {
 		this.userService = authUser;
 	}
 
-	@CrossOrigin(origins = "http://knowinminutes.com")
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
 	@RequestMapping(produces = "application/json", value = "/add",method={RequestMethod.POST,RequestMethod.OPTIONS})
-	public ResponseEntity<Response> add(@RequestBody AddEffortsRequest request) {
+	public ResponseEntity<Response> add(@RequestBody AddPurchaseOrderRequest request) {
 		Response response = new Response();
 		try {
 			userService.authenticate(request.getEmpId(), request.getPassword());
-			effortService.addEfforts(request.getServiceRequest());
+			poService.addPurchaseOrder(request.getServiceRequest());
 
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.USER_LOGIN_SUCCESS));
+			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.PO_ADD_SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());
 			response.setErrorMsg(exception.getErrorMsg());
-		} 
+		}
 
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://knowinminutes.com")
-	@RequestMapping(produces = "application/json", value = "/getEfforts",method={RequestMethod.POST,RequestMethod.OPTIONS})
-	public ResponseEntity<Response> getEfforts(@RequestBody GetEffortsRequest request) {
-		Response response = new Response();
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
+	@RequestMapping(produces = "application/json", value = "/search",method={RequestMethod.POST,RequestMethod.OPTIONS})
+	public ResponseEntity<SearchPurchaseOrderResponse> search(@RequestBody SearchPurchaseOrderRequest request) {
+		SearchPurchaseOrderResponse response = new SearchPurchaseOrderResponse();
 		try {
 			userService.authenticate(request.getEmpId(), request.getPassword());
-			System.out.println(request.getStartDate());
-			System.out.println(request.getEndDate());
-			List<EffortItem> efforts = effortService.getEfforts(request.getServiceRequest());
-			System.out.println(efforts.size());
-			response.setObject(efforts);
+			List<PurchaseOrderBean> pos = poService.searchPurchaseOrder(request.getServiceRequest());
+			response.setPos(pos);
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.USER_LOGIN_SUCCESS));
+			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.PO_ADD_SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());
 			response.setErrorMsg(exception.getErrorMsg());
-		} 
+		}
 
-		return new ResponseEntity<Response>(response, HttpStatus.OK);
+		return new ResponseEntity<SearchPurchaseOrderResponse>(response, HttpStatus.OK);
 	}
 }

@@ -3,9 +3,9 @@ package com.minion.loader.excel;
 import com.minion.loader.RowBean;
 import com.minion.loader.RowTransformer;
 import com.minion.service.Invoice;
-import com.minion.service.request.CreateOrUpdateInvoiceRequest;
-import com.minion.service.request.CreateOrUpdateInvoiceUserItemRequest;
-import com.minion.service.request.QueryInvoiceRequest;
+import com.minion.service.bean.request.CreateOrUpdateInvoiceRequest;
+import com.minion.service.bean.request.CreateOrUpdateInvoiceUserItemRequest;
+import com.minion.service.bean.request.QueryInvoiceRequest;
 
 public class InvoiceBeanRowTransformer implements RowTransformer {
 

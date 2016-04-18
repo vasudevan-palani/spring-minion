@@ -1,6 +1,8 @@
-package com.minion.service.request;
+package com.minion.service.bean.request;
 
 import java.util.ArrayList;
+
+import com.minion.service.bean.EffortItem;
 
 public class AddEffortsRequest {
 	private int allocationId;

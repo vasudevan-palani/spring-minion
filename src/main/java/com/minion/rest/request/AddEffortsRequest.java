@@ -24,13 +24,13 @@ public class AddEffortsRequest extends Request {
 		this.efforts = efforts;
 	}
 
-	public com.minion.service.request.AddEffortsRequest getServiceRequest(){
-		com.minion.service.request.AddEffortsRequest request = new com.minion.service.request.AddEffortsRequest();
+	public com.minion.service.bean.request.AddEffortsRequest getServiceRequest(){
+		com.minion.service.bean.request.AddEffortsRequest request = new com.minion.service.bean.request.AddEffortsRequest();
 		request.setAllocationId(allocationId);
 		for(EffortItem item : getEfforts()){
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			try {
-				com.minion.service.request.EffortItem serviceItem = new com.minion.service.request.EffortItem();
+				com.minion.service.bean.EffortItem serviceItem = new com.minion.service.bean.EffortItem();
 				serviceItem.setDate(new java.sql.Date(format.parse(item.getDate()).getTime()));
 				serviceItem.setEffort(item.getEffort());
 				request.getEfforts().add(serviceItem);

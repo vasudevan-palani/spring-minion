@@ -587,13 +587,40 @@ public class MinionApplication extends SpringBootServletInitializer {
 		app.run(args);
 	}
 	
-	@Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/greeting-javaconfig").allowedOrigins("http://knowinminutes.com");
-            }
-        };
-    }	
+	private void copyFiles() {
+		File directory = new File("c:/vasu/tracfone-operations/invoices");
+		// File directory = new File("C:/Vasu/tracfone-operations/invoices");
+		File[] fList = directory.listFiles();
+
+		// This will reference one line at a time
+		String line = null;
+		boolean found = false;
+		try {
+			// FileReader reads text files in the default encoding.
+			FileReader fileReader = new FileReader("c:/temp/pos-invalid.txt");
+			// FileReader fileReader = new
+			// FileReader("C:/Vasu/tracfone-operations/pending_invoice.txt");
+
+			// Always wrap FileReader in BufferedReader.
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			while ((line = bufferedReader.readLine()) != null) {
+				found = false;
+				line = line.trim();
+				// for each name in the path array
+				for (File path : fList) {
+					if (path.getName().matches(".*" + line + ".*")) {
+						found = true;
+
+					}
+				}
+				if (!found) {
+					System.out.println(line);
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}	
 }

@@ -12,5 +12,7 @@ public interface PORepository extends CrudRepository<PO, Serializable >{
 	List<PO> findByPoNumber(String poNumber);
 
 	PO findByPoNumberAndPoVersion(String poNumber, String poRevision);
+
+	List<PO> findByProjectId(Integer projectId);
 	
 }

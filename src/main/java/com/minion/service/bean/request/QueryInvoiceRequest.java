@@ -1,6 +1,8 @@
-package com.minion.service.request;
+package com.minion.service.bean.request;
 
 import java.sql.Date;
+
+import com.minion.service.bean.BillingPeriodCriteria;
 
 public class QueryInvoiceRequest {
 	

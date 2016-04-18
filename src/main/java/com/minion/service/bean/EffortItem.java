@@ -1,4 +1,4 @@
-package com.minion.service.request;
+package com.minion.service.bean;
 
 import java.sql.Date;
 

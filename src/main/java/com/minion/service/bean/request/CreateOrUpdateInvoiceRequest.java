@@ -1,9 +1,9 @@
-package com.minion.service.request;
+package com.minion.service.bean.request;
 
 import java.sql.Date;
 import java.util.List;
 
-public class Invoice {
+public class CreateOrUpdateInvoiceRequest {
 	private Integer id;
 	private Date startDate;
 	private Date endDate;
@@ -16,7 +16,7 @@ public class Invoice {
 	private String status;
 	private Float total;
 	
-	private List<InvoiceUser> invoiceUsers;
+	private String invoiceNumber;
 	
 	public Integer getId() {
 		return id;
@@ -84,13 +84,11 @@ public class Invoice {
 	public void setTotal(Float total) {
 		this.total = total;
 	}
-	public List<InvoiceUser> getInvoiceUsers() {
-		return invoiceUsers;
+	public String getInvoiceNumber() {
+		return invoiceNumber;
 	}
-	public void setInvoiceUsers(List<InvoiceUser> invoiceUsers) {
-		this.invoiceUsers = invoiceUsers;
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
 	}
-	
-	
 	
 }

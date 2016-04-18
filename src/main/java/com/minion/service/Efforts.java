@@ -11,10 +11,10 @@ import com.minion.model.ProjectAllocation;
 import com.minion.repo.AllocationRepository;
 import com.minion.repo.EffortRepository;
 import com.minion.repo.UserRepository;
+import com.minion.service.bean.EffortItem;
+import com.minion.service.bean.request.AddEffortsRequest;
+import com.minion.service.bean.request.GetEffortsRequest;
 import com.minion.service.exception.EffortAdditionException;
-import com.minion.service.request.AddEffortsRequest;
-import com.minion.service.request.EffortItem;
-import com.minion.service.request.GetEffortsRequest;
 
 @Component
 public class Efforts {

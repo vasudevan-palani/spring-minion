@@ -20,7 +20,7 @@ import com.minion.service.ErrorCodes;
 import com.minion.service.ErrorMsg;
 import com.minion.service.MinionServiceException;
 import com.minion.service.User;
-import com.minion.service.request.UserAllocationRequest;
+import com.minion.service.bean.request.UserAllocationRequest;
 
 @RestController
 @RequestMapping("/allocations")
@@ -85,7 +85,7 @@ public class ProjectAllocationController extends BaseController {
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 
-	@CrossOrigin(origins = "http://knowinminutes.com")
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
 	@RequestMapping(produces = "application/json", value = "/index",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> getUserAllocation(@RequestBody Request request) {
 		Response response = new Response();

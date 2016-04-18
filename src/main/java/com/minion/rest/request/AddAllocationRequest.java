@@ -58,8 +58,8 @@ public class AddAllocationRequest{
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public com.minion.service.request.AddAllocationRequest getServiceRequest() {
-		com.minion.service.request.AddAllocationRequest request = new com.minion.service.request.AddAllocationRequest();
+	public com.minion.service.bean.request.AddAllocationRequest getServiceRequest() {
+		com.minion.service.bean.request.AddAllocationRequest request = new com.minion.service.bean.request.AddAllocationRequest();
 		
 		request.setEmpId(this.getEmpId());
 		request.setBillingRate(getBillingRate());

@@ -13,10 +13,10 @@ import com.minion.dao.PODao;
 import com.minion.dao.ProjectDao;
 import com.minion.dao.UserDao;
 import com.minion.model.InvoiceUser;
-import com.minion.service.request.AddInvoiceUserItemRequest;
-import com.minion.service.request.CreateOrUpdateInvoiceRequest;
-import com.minion.service.request.CreateOrUpdateInvoiceUserItemRequest;
-import com.minion.service.request.QueryInvoiceRequest;
+import com.minion.service.bean.request.AddInvoiceUserItemRequest;
+import com.minion.service.bean.request.CreateOrUpdateInvoiceRequest;
+import com.minion.service.bean.request.CreateOrUpdateInvoiceUserItemRequest;
+import com.minion.service.bean.request.QueryInvoiceRequest;
 
 /**
  * @author Vasudevan PALANI
@@ -85,7 +85,7 @@ public class Invoice {
 	 * 
 	 * @return
 	 */
-	public List<com.minion.service.request.Invoice> queryInvoice(QueryInvoiceRequest request) {
+	public List<com.minion.service.bean.Invoice> queryInvoice(QueryInvoiceRequest request) {
 		return null;
 	}
 

@@ -1,6 +1,6 @@
-package com.minion.service.request;
+package com.minion.service.bean.request;
 
-public class AddInvoiceUserItemRequest {
+public class CreateOrUpdateInvoiceUserItemRequest {
 	private String invoiceNumber;
 	private String empId;
 	private Float hours;
@@ -36,5 +36,5 @@ public class AddInvoiceUserItemRequest {
 	public void setTotal(Float total) {
 		this.total = total;
 	}
-	
+
 }

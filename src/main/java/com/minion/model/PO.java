@@ -1,5 +1,7 @@
 package com.minion.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,9 @@ public class PO {
 	
 	@Column(name="project_id")
 	private Integer projectId;
+	
+	@Column(name="requested_date")
+	private Date requestedDate;
 	
 	public Integer getId() {
 		return id;
@@ -86,5 +91,11 @@ public class PO {
 		this.projectId = projectId;
 	}
 
-	
+	public Date getRequestedDate() {
+		return requestedDate;
+	}
+
+	public void setRequestedDate(Date requestedDate) {
+		this.requestedDate = requestedDate;
+	}	
 }

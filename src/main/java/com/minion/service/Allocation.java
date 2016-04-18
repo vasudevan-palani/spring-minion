@@ -15,9 +15,9 @@ import com.minion.repo.AllocationRepository;
 import com.minion.repo.ProjectRepository;
 import com.minion.repo.UserRepository;
 import com.minion.repo.view.UserProjectAllocationRepository;
+import com.minion.service.bean.request.AddAllocationRequest;
+import com.minion.service.bean.request.UserAllocationRequest;
 import com.minion.service.exception.AddAllocationException;
-import com.minion.service.request.AddAllocationRequest;
-import com.minion.service.request.UserAllocationRequest;
 
 @Component
 public class Allocation {
