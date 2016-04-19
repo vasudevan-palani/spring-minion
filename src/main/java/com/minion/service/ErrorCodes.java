@@ -14,5 +14,7 @@ public class ErrorCodes {
 	public static final String DUPLICATE_PO = "401";
 
 	public static final String PO_ADD_SUCCESS = "400";
+
+	public static final String PO_UPDATE_SUCCESS = "410";
 	
 }

@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minion.rest.request.AddPurchaseOrderRequest;
+import com.minion.rest.request.GetPurchaseOrderRequest;
 import com.minion.rest.request.SearchPurchaseOrderRequest;
+import com.minion.rest.request.UpdatePurchaseOrderRequest;
+import com.minion.rest.response.GetPurchaseOrderResponse;
 import com.minion.rest.response.Response;
 import com.minion.rest.response.SearchPurchaseOrderResponse;
 import com.minion.service.ErrorCodes;
@@ -88,7 +91,6 @@ public class PurchaseOrderController extends BaseController {
 			List<PurchaseOrderBean> pos = poService.searchPurchaseOrder(request.getServiceRequest());
 			response.setPos(pos);
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.PO_ADD_SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());
@@ -96,5 +98,44 @@ public class PurchaseOrderController extends BaseController {
 		}
 
 		return new ResponseEntity<SearchPurchaseOrderResponse>(response, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
+	@RequestMapping(produces = "application/json", value = "/get",method={RequestMethod.POST,RequestMethod.OPTIONS})
+	public ResponseEntity<GetPurchaseOrderResponse> get(@RequestBody GetPurchaseOrderRequest request) {
+		GetPurchaseOrderResponse response = new GetPurchaseOrderResponse();
+		try {
+			userService.authenticate(request.getEmpId(), request.getPassword());
+
+			PurchaseOrderBean po = poService.getPurchaseOrder(request.getServiceRequest());
+			response.setPo(po);
+			response.setErrorcode(ErrorCodes.SUCCESS);
+
+
+		} catch (MinionServiceException exception) {
+			response.setErrorcode(exception.getErrorCode());
+			response.setErrorMsg(exception.getErrorMsg());
+		}
+
+		return new ResponseEntity<GetPurchaseOrderResponse>(response, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
+	@RequestMapping(produces = "application/json", value = "/update",method={RequestMethod.POST,RequestMethod.OPTIONS})
+	public ResponseEntity<Response> update(@RequestBody UpdatePurchaseOrderRequest request) {
+		Response response = new Response();
+		try {
+			userService.authenticate(request.getEmpId(), request.getPassword());
+
+			poService.updatePurchaseOrder(request.getServiceRequest());
+			response.setErrorcode(ErrorCodes.SUCCESS);
+			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.PO_UPDATE_SUCCESS));
+
+		} catch (MinionServiceException exception) {
+			response.setErrorcode(exception.getErrorCode());
+			response.setErrorMsg(exception.getErrorMsg());
+		}
+
+		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 }

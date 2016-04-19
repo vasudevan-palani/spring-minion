@@ -80,4 +80,71 @@ public class PurchaseOrder {
 		}
 		return beans;
 	}
+
+	public PurchaseOrderBean getPurchaseOrder(
+			com.minion.service.bean.request.GetPurchaseOrderRequest serviceRequest) {
+		PO po = poRepo.findOne(serviceRequest.getPoId());
+
+		PurchaseOrderBean responseBean = new PurchaseOrderBean();
+		responseBean.importModel(po);
+		
+		List<PORoles> poRolesList = poRoleRepo.findByPoId(po.getId());
+		
+		List<PurchaseOrderRoleBean> roleList = new ArrayList<PurchaseOrderRoleBean>();
+		
+		for (PORoles poRole : poRolesList) {
+			PurchaseOrderRoleBean roleBean = new PurchaseOrderRoleBean();
+			roleBean.importRole(poRole);
+			roleList.add(roleBean);
+			
+		}
+		responseBean.setPoRoles(roleList);
+		
+		return responseBean;
+	}
+
+	public void updatePurchaseOrder(
+			com.minion.service.bean.request.UpdatePurchaseOrderRequest serviceRequest) {
+		PO po = beantoModel(serviceRequest.getPo());
+		
+		poRepo.save(po);
+		
+		for (PurchaseOrderRoleBean rb : serviceRequest.getPo().getPoRoles()) {
+			PORoles pr = beantoModel(rb);
+			pr.setPoId(po.getId());
+			if(rb.getAdded()!= null && rb.getAdded() == 1){
+				pr.setId(null);
+			}
+			if(rb.getDeleted()!= null && rb.getDeleted() == 1){
+				poRoleRepo.delete(pr.getId());
+			}
+			else{
+				poRoleRepo.save(pr);				
+			}
+		}
+	}
+
+	private PORoles beantoModel(PurchaseOrderRoleBean rb) {
+		PORoles pr = new PORoles();
+		pr.setId(rb.getId());
+		pr.setQuantity(rb.getQuantity());
+		pr.setRate(rb.getRate());
+		pr.setRolesDescription(rb.getRole());
+		pr.setTotal(rb.getTotal());
+		pr.setPoId(rb.getPoId());
+		return pr;
+	}
+
+	private PO beantoModel(PurchaseOrderBean pb) {
+		PO po = new PO();
+		po.setId(Integer.parseInt(pb.getId()));
+		po.setPoNumber(pb.getPoNumber());
+		po.setPoVersion(pb.getVersion().toString());
+		po.setRequestedDate(pb.getRequestedDate());
+		po.setProjectId(pb.getProjectId());
+		po.setRequester(pb.getRequester());
+		po.setBuyer(pb.getBuyer());
+		
+		return po;
+	}
 }

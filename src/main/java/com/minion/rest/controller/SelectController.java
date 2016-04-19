@@ -17,7 +17,6 @@ import com.minion.model.Project;
 import com.minion.repo.ProjectRepository;
 import com.minion.rest.request.SelectRequest;
 import com.minion.rest.request.bean.SelectItem;
-import com.minion.rest.response.Response;
 import com.minion.rest.response.SelectGetResponse;
 import com.minion.rest.response.bean.SelectGetBean;
 import com.minion.service.ErrorCodes;
@@ -57,7 +56,6 @@ public class SelectController extends BaseController {
 			}
 
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());
