@@ -66,7 +66,7 @@ public class EffortController extends BaseController {
 		this.userService = authUser;
 	}
 
-	@CrossOrigin(origins = "http://knowinminutes.com")
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
 	@RequestMapping(produces = "application/json", value = "/add",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> add(@RequestBody AddEffortsRequest request) {
 		Response response = new Response();
@@ -75,7 +75,7 @@ public class EffortController extends BaseController {
 			effortService.addEfforts(request.getServiceRequest());
 
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.USER_LOGIN_SUCCESS));
+			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.EFFORT_ADD_SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());
@@ -85,7 +85,7 @@ public class EffortController extends BaseController {
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://knowinminutes.com")
+	@CrossOrigin(origins = {"http://knowinminutes.com","http://localhost:8887"})
 	@RequestMapping(produces = "application/json", value = "/getEfforts",method={RequestMethod.POST,RequestMethod.OPTIONS})
 	public ResponseEntity<Response> getEfforts(@RequestBody GetEffortsRequest request) {
 		Response response = new Response();
@@ -97,7 +97,6 @@ public class EffortController extends BaseController {
 			System.out.println(efforts.size());
 			response.setObject(efforts);
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.USER_LOGIN_SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());

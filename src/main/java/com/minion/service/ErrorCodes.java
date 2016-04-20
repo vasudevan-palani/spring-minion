@@ -16,5 +16,7 @@ public class ErrorCodes {
 	public static final String PO_ADD_SUCCESS = "400";
 
 	public static final String PO_UPDATE_SUCCESS = "410";
+
+	public static final String EFFORT_ADD_SUCCESS = "500";
 	
 }
