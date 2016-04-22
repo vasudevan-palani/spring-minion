@@ -1,11 +1,9 @@
 package com.minion.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.LogLevel;
 import org.springframework.stereotype.Component;
 
 import com.minion.Constants;
-import com.minion.Utils;
 import com.minion.model.User;
 import com.minion.repo.StatusRepository;
 import com.minion.repo.UserRepository;

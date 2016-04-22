@@ -1,5 +1,7 @@
 package com.minion.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -106,9 +108,22 @@ public class InvoiceUserDao {
 		return invoiceUserRepo.findByInvoiceIdAndUserId(invoiceId, userId);
 	}
 
-	public void save(InvoiceUser invoiceUser) {
-		
+
+	public List<InvoiceUser> findbyInvoiceId(Integer invoiceId) {
+		return invoiceUserRepo.findByInvoiceId(invoiceId);
+	}
+
+	public void updateInvoiceUser(InvoiceUser invoiceUser) {
 		invoiceUserRepo.save(invoiceUser);
+		
+	}
+
+	public void addInvoiceUser(InvoiceUser invoiceUser) {
+		invoiceUserRepo.save(invoiceUser);
+	}
+
+	public void deleteInvoiceUser(InvoiceUser invoiceUser) {
+		invoiceUserRepo.delete(invoiceUser.getId());
 	}
 
 }

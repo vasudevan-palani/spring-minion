@@ -10,7 +10,7 @@ public class InvoiceUser {
 
 	@Id
 	@GeneratedValue
-	private String id;
+	private Integer id;
 	
 	@Column(name="invoice_id")
 	private Integer invoiceId;
@@ -23,10 +23,10 @@ public class InvoiceUser {
 	@Column(name="billing_rate")
 	private Integer billingRate;
 	private Float total;
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

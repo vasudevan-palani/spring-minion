@@ -5,14 +5,14 @@ import java.sql.Date;
 import com.minion.service.bean.BillingPeriodCriteria;
 
 public class QueryInvoiceRequest {
-	
+
 	private String empId;
 	private String invoiceNumber;
 	private Date invoiceDate;
 	private String poNumber;
 	private String projectId;
-	private Integer total;
-	
+	private String statusId;
+
 	private BillingPeriodCriteria billingPeriod;
 
 	public String getEmpId() {
@@ -55,14 +55,6 @@ public class QueryInvoiceRequest {
 		this.projectId = projectId;
 	}
 
-	public Integer getTotal() {
-		return total;
-	}
-
-	public void setTotal(Integer total) {
-		this.total = total;
-	}
-
 	public BillingPeriodCriteria getBillingPeriod() {
 		return billingPeriod;
 	}
@@ -70,7 +62,13 @@ public class QueryInvoiceRequest {
 	public void setBillingPeriod(BillingPeriodCriteria billingPeriod) {
 		this.billingPeriod = billingPeriod;
 	}
-	
-	
+
+	public String getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(String statusId) {
+		this.statusId = statusId;
+	}
 
 }

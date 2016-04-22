@@ -1,14 +1,18 @@
 package com.minion.dao;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.minion.Constants;
 import com.minion.model.Invoice;
+import com.minion.model.view.InvoiceSearch;
 import com.minion.repo.InvoiceRepository;
+import com.minion.repo.InvoiceSearchRepository;
 import com.minion.repo.PORepository;
 import com.minion.repo.StatusRepository;
 import com.minion.repo.UserRepository;
@@ -27,6 +31,9 @@ public class InvoiceDao {
 
 	@Autowired
 	private InvoiceRepository invoiceRepo;
+	
+	@Autowired
+	private InvoiceSearchRepository invoiceSearchRepo;
 
 	public InvoiceRepository getInvoiceRepo() {
 		return invoiceRepo;
@@ -68,8 +75,8 @@ public class InvoiceDao {
 		this.poRepo = poRepo;
 	}
 
-	public Invoice createInvoiceIfNotExists(String invoiceId, String startDate, String endDate, String invoiceDate, Integer projectId,
-			Integer poId, Float total, String invoiceFile) throws ParseException {
+	public Invoice createInvoiceIfNotExists(String invoiceId, String startDate, String endDate, String invoiceDate,
+			Integer projectId, Integer poId, Float total, String invoiceFile) throws ParseException {
 
 		Invoice invoice = invoiceRepo.findByInvoiceId(invoiceId);
 		SimpleDateFormat formatter1 = new SimpleDateFormat("MMMMM-yyyy");
@@ -77,26 +84,23 @@ public class InvoiceDao {
 		SimpleDateFormat startDateformatter = null;
 		SimpleDateFormat endDateformatter = null;
 		SimpleDateFormat invoiceDateformatter = null;
-		
-		if(startDate.matches("\\d.*")){
+
+		if (startDate.matches("\\d.*")) {
 			startDateformatter = formatter2;
-		}
-		else{
+		} else {
 			startDateformatter = formatter1;
 		}
-		if(endDate != null && endDate.matches("\\d.*")){
+		if (endDate != null && endDate.matches("\\d.*")) {
 			endDateformatter = formatter2;
-		}
-		else{
+		} else {
 			endDateformatter = formatter1;
 		}
-		if(invoiceDate != null && invoiceDate.matches("\\d.*")){
+		if (invoiceDate != null && invoiceDate.matches("\\d.*")) {
 			invoiceDateformatter = formatter2;
-		}
-		else{
+		} else {
 			invoiceDateformatter = formatter1;
 		}
-		
+
 		if (invoice != null) {
 			System.out.println("Invoice Exists : " + invoiceId);
 			return invoice;
@@ -105,16 +109,16 @@ public class InvoiceDao {
 			invoice = new Invoice();
 			invoice.setInvoiceId(invoiceId);
 			if (endDate != null)
-				invoice.setEndDate(endDateformatter.parse(endDate));
+				invoice.setEndDate(new Date(endDateformatter.parse(endDate).getTime()));
 			if (startDate != null) {
 				System.out.println(startDate);
-				
-				invoice.setStartDate(startDateformatter.parse(startDate));
+
+				invoice.setStartDate(new Date(startDateformatter.parse(startDate).getTime()));
 			}
 			if (invoiceDate != null) {
 				System.out.println(invoiceDate);
-				
-				invoice.setInvoiceDate(invoiceDateformatter.parse(invoiceDate));
+
+				invoice.setInvoiceDate(new Date(invoiceDateformatter.parse(invoiceDate).getTime()));
 			}
 			invoice.setPoId(poId);
 			invoice.setProjectId(projectId);
@@ -133,9 +137,28 @@ public class InvoiceDao {
 		return invoiceRepo.findByInvoiceId(invoiceNumber);
 	}
 
-	public void save(com.minion.model.Invoice invoice) {
-		invoiceRepo.save(invoice);
-		
+	public InvoiceSearch findInvoiceById(Integer Id) {
+
+		return invoiceSearchRepo.findById(Id);
 	}
 	
+	
+	public List<InvoiceSearch> findInvoices(String invoiceId, Date startDate, Date endDate, Date invoiceDate, String empId,
+			String poNumber, String projectId, String statusId) {
+		return invoiceSearchRepo.findInvoices(invoiceId, startDate, endDate, invoiceDate, empId, poNumber, projectId,statusId);
+	}
+
+	public void save(com.minion.model.Invoice invoice) {
+		invoiceRepo.save(invoice);
+
+	}
+
+	public void updateInvoice(com.minion.model.Invoice invoice) {
+		invoiceRepo.save(invoice);
+	}
+
+	public void addInvoice(com.minion.model.Invoice invoice) {
+		
+		invoiceRepo.save(invoice);
+	}
 }

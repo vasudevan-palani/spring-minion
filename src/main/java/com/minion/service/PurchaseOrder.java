@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.minion.dao.PODao;
 import com.minion.model.PO;
 import com.minion.model.PORoles;
 import com.minion.model.view.PurchaseOrderSearch;
@@ -31,6 +32,9 @@ public class PurchaseOrder {
 	
 	@Autowired
 	ErrorMsg errorService;
+	
+	@Autowired
+	PODao poDao;
 	
 	public void addPurchaseOrder(AddPurchaseOrderRequest request){
 		PO po =  poRepo.findByPoNumberAndPoVersion(request.getPoNumber(),request.getVersion());
@@ -146,5 +150,14 @@ public class PurchaseOrder {
 		po.setBuyer(pb.getBuyer());
 		
 		return po;
+	}
+
+	public boolean isPurchaseOrderExist(String poNumber) {
+		PO po = poDao.findByPoNumber(poNumber);
+		return po != null;
+	}
+
+	public PO getPurchaseOrder(String poNumber) {
+		return poDao.findByPoNumber(poNumber);
 	}
 }

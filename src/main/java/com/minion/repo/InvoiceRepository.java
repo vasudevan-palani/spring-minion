@@ -9,5 +9,6 @@ import com.minion.model.Invoice;
 public interface InvoiceRepository extends CrudRepository<Invoice, Serializable >{
 
 	Invoice findByInvoiceId(String invoiceId);
+	Invoice findById(Integer id);
 	
 }

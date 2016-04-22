@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minion.model.Project;
+import com.minion.model.Status;
+import com.minion.model.User;
 import com.minion.repo.ProjectRepository;
+import com.minion.repo.StatusRepository;
+import com.minion.repo.UserRepository;
 import com.minion.rest.request.SelectRequest;
 import com.minion.rest.request.bean.SelectItem;
 import com.minion.rest.response.SelectGetResponse;
@@ -29,6 +33,12 @@ public class SelectController extends BaseController {
 	
 	@Autowired
 	ProjectRepository projectRepo;
+
+	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	StatusRepository statusRepo;
 	
 	@Autowired
 	ErrorMsg errorMsgs;
@@ -52,6 +62,28 @@ public class SelectController extends BaseController {
 						beans.add(bean);
 					}
 					response.getList().put("project",beans);
+				}
+				if(name.getName().equalsIgnoreCase("user")){
+					Iterable<User> users = userRepo.findAll();
+					List<SelectGetBean> beans = new ArrayList<SelectGetBean>();
+					for (User user : users) {
+						SelectGetBean bean = new SelectGetBean();
+						bean.setId(user.getId().toString());
+						bean.setName(user.getFirstName()+" "+user.getLastName().toUpperCase());
+						beans.add(bean);
+					}
+					response.getList().put("user",beans);
+				}
+				if(name.getName().equalsIgnoreCase("status")){
+					Iterable<Status> statuses = statusRepo.findAll();
+					List<SelectGetBean> beans = new ArrayList<SelectGetBean>();
+					for (Status status : statuses) {
+						SelectGetBean bean = new SelectGetBean();
+						bean.setId(status.getId().toString());
+						bean.setName(status.getName().toUpperCase());
+						beans.add(bean);
+					}
+					response.getList().put("status",beans);
 				}
 			}
 
