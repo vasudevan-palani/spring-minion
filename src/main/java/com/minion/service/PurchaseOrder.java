@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.minion.dao.PODao;
+import com.minion.dao.PORoleUserDao;
 import com.minion.model.PO;
+import com.minion.model.PORoleUser;
 import com.minion.model.PORoles;
 import com.minion.model.view.PurchaseOrderSearch;
 import com.minion.repo.PORepository;
@@ -36,6 +38,9 @@ public class PurchaseOrder {
 	@Autowired
 	PODao poDao;
 	
+	@Autowired
+	PORoleUserDao poRoleUserDao;
+	
 	public void addPurchaseOrder(AddPurchaseOrderRequest request){
 		PO po =  poRepo.findByPoNumberAndPoVersion(request.getPoNumber(),request.getVersion());
 		
@@ -63,6 +68,13 @@ public class PurchaseOrder {
 			role.setRolesDescription(bean.getRole());
 			role.setTotal(bean.getTotal());
 			poRoleRepo.save(role);
+			if(bean.getUserId() != null){
+				PORoleUser roleUser = poRoleUserDao.findByRoleIdAndUserId(role.getId(),bean.getUserId());
+				if(roleUser == null){
+					poRoleUserDao.addUser(role.getId(),bean.getUserId());
+				}
+			}
+
 		}
 	}
 
@@ -98,6 +110,10 @@ public class PurchaseOrder {
 		
 		for (PORoles poRole : poRolesList) {
 			PurchaseOrderRoleBean roleBean = new PurchaseOrderRoleBean();
+			PORoleUser poRoleUser = poRoleUserDao.findByRoleId(poRole.getId());
+			if(poRoleUser != null){
+				roleBean.setUserId(poRoleUser.getUserId());
+			}
 			roleBean.importRole(poRole);
 			roleList.add(roleBean);
 			
@@ -124,6 +140,17 @@ public class PurchaseOrder {
 			}
 			else{
 				poRoleRepo.save(pr);				
+			}
+			if(rb.getUserId() != null){
+				PORoleUser roleUser = poRoleUserDao.findByRoleId(pr.getId());
+				System.out.println(roleUser.getRoleId());
+				if(roleUser == null){
+					poRoleUserDao.addUser(pr.getId(),rb.getUserId());
+				}
+				else{
+					roleUser.setUserId(rb.getUserId());
+					poRoleUserDao.update(roleUser);
+				}
 			}
 		}
 	}

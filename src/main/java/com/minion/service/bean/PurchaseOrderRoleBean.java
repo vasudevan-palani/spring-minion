@@ -14,6 +14,8 @@ public class PurchaseOrderRoleBean {
 	private Integer added;
 	private Integer deleted;
 	
+	private Integer userId;
+	
 	public String getRole() {
 		return role;
 	}
@@ -66,6 +68,13 @@ public class PurchaseOrderRoleBean {
 	}
 	public void setPoId(Integer poId) {
 		this.poId = poId;
+	}
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	public void importRole(PORoles poRole) {
 		setQuantity(poRole.getQuantity());
