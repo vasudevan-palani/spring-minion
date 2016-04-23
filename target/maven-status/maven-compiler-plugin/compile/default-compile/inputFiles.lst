@@ -6,10 +6,12 @@ C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\I
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\loader\BillingSheetLoader.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\loader\FileLoader.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\Constants.java
+C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\repo\PORoleUserRepository.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\loader\excel\KronosBean.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\view\InvoiceSearch.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\repo\CustomAllocationRepository.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\response\bean\SelectGetBean.java
+C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\bean\UserProjectAllocationBean.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\KronosHours.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\ResourceBean.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\request\GetEffortsRequest.java
@@ -44,6 +46,7 @@ C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\co
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\CreditNote.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\bean\BillingPeriodCriteria.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\bean\request\QueryInvoiceRequest.java
+C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\bean\GetEffortsBean.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\PurchaseOrder.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\POBean.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\exception\AddAllocationException.java
@@ -81,6 +84,7 @@ C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\re
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\KronosUserMapping.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\request\AddEffortsRequest.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\loader\LoadingException.java
+C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\dao\PORoleUserDao.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\repo\KronosUserMappingsRepository.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\request\bean\SelectItem.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\response\Response.java
@@ -96,6 +100,7 @@ C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\co
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\User.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\service\ServiceResponse.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\loader\excel\ExcelLoader.java
+C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\PORoleUser.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\model\User.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\rest\controller\InvoiceController.java
 C:\Users\ctsuser\Documents\GitHub\spring-minion\src\main\java\com\minion\repo\InvoiceUserRepository.java

@@ -1,43 +1,53 @@
 package com.minion.rest.request;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.minion.Mapper;
+import com.minion.service.bean.GetEffortsBean;
+
+
 
 public class AddEffortsRequest extends Request {
-	private int allocationId;
-	private ArrayList<EffortItem> efforts;
+	private String empId;
+	private String password;
+	
+	private ArrayList<GetEffortsBean> request;
 
-	public int getAllocationId() {
-		return allocationId;
+
+	public String getEmpId() {
+		return empId;
 	}
 
-	public void setAllocationId(int allocationId) {
-		this.allocationId = allocationId;
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
 	}
 
-	public ArrayList<EffortItem> getEfforts() {
-		return efforts;
+
+	public String getPassword() {
+		return password;
 	}
 
-	public void setEfforts(ArrayList<EffortItem> efforts) {
-		this.efforts = efforts;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+
+	public ArrayList<GetEffortsBean> getRequest() {
+		return request;
+	}
+
+
+	public void setRequest(ArrayList<GetEffortsBean> request) {
+		this.request = request;
+	}
+
 
 	public com.minion.service.bean.request.AddEffortsRequest getServiceRequest(){
 		com.minion.service.bean.request.AddEffortsRequest request = new com.minion.service.bean.request.AddEffortsRequest();
-		request.setAllocationId(allocationId);
-		for(EffortItem item : getEfforts()){
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			try {
-				com.minion.service.bean.EffortItem serviceItem = new com.minion.service.bean.EffortItem();
-				serviceItem.setDate(new java.sql.Date(format.parse(item.getDate()).getTime()));
-				serviceItem.setEffort(item.getEffort());
-				request.getEfforts().add(serviceItem);
-			} catch (ParseException e) {
-			}			
-		}
-
+		request.setRequest(getRequest());
 		return request;
 	}
 }

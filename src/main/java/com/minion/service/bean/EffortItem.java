@@ -5,6 +5,16 @@ import java.sql.Date;
 public class EffortItem {
 	private Date date;
 	private float effort;
+
+	private String dateStr;
+	
+
+	public String getDateStr() {
+		return dateStr;
+	}
+	public void setDateStr(String dateStr) {
+		this.dateStr = dateStr;
+	}
 	public Date getDate() {
 		return date;
 	}

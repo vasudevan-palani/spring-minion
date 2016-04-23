@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class UserProjectAllocation {
 
 	@Id
-	private String id;
+	private Integer id;
 	
 	@Column(name = "emp_id")
 	private Integer empId;
@@ -133,11 +133,11 @@ public class UserProjectAllocation {
 		this.projectName = projectName;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
