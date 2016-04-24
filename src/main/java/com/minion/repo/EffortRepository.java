@@ -12,9 +12,9 @@ import com.minion.model.Effort;
 
 public interface EffortRepository extends CrudRepository<Effort, Serializable >{
 
-	Effort findByAllocationIdAndDate(Integer allocationId,Date date);
+	Effort findByPoRoleIdAndDate(Integer poRoleId,Date date);
 
-	@Query("SELECT e FROM efforts e where e.allocationId=:allocationId and e.date between :startDate and :endDate")
-	List<Effort> findEfforts(@Param("allocationId")Integer allocationId,@Param("startDate")Date startDate,@Param("endDate")Date endDate);
+	@Query("SELECT e FROM efforts e where e.poRoleId=:poRoleId and e.date between :startDate and :endDate")
+	List<Effort> findEfforts(@Param("poRoleId")Integer allocationId,@Param("startDate")Date startDate,@Param("endDate")Date endDate);
 	
 }

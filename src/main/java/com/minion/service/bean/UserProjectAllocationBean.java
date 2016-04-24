@@ -1,6 +1,5 @@
 package com.minion.service.bean;
 
-import java.sql.Date;
 import java.util.List;
 
 public class UserProjectAllocationBean {
@@ -8,17 +7,9 @@ public class UserProjectAllocationBean {
 	
 	private Integer empId;
 
-	private Date startDate;
-
-	private Date endDate;
-
-	private Integer billingRate;
-
 	private Integer projectId;
 
 	private Integer userId;
-
-	private Integer percent;
 
 	private String firstName;
 
@@ -27,6 +18,8 @@ public class UserProjectAllocationBean {
 	private String projectESAId;
 
 	private String projectName;
+	
+	private Integer poRoleId;
 
 	private List<EffortItem> efforts;
 	
@@ -46,32 +39,6 @@ public class UserProjectAllocationBean {
 		this.empId = empId;
 	}
 
-
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public Integer getBillingRate() {
-		return billingRate;
-	}
-
-	public void setBillingRate(Integer billingRate) {
-		this.billingRate = billingRate;
-	}
-
 	public Integer getProjectId() {
 		return projectId;
 	}
@@ -86,14 +53,6 @@ public class UserProjectAllocationBean {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-
-	public Integer getPercent() {
-		return percent;
-	}
-
-	public void setPercent(Integer percent) {
-		this.percent = percent;
 	}
 
 	public String getFirstName() {
@@ -134,6 +93,14 @@ public class UserProjectAllocationBean {
 
 	public void setEfforts(List<EffortItem> efforts) {
 		this.efforts = efforts;
+	}
+
+	public Integer getPoRoleId() {
+		return poRoleId;
+	}
+
+	public void setPoRoleId(Integer poRoleId) {
+		this.poRoleId = poRoleId;
 	}
 
 }

@@ -14,8 +14,8 @@ public class Effort {
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(name="allocation_id")
-	private Integer allocationId;
+	@Column(name="po_role_id")
+	private Integer poRoleId;
 	
 	@Column(name="approved_hours")
 	private Integer approvedHours;
@@ -37,13 +37,6 @@ public class Effort {
 		this.id = id;
 	}
 
-	public Integer getAllocationId() {
-		return allocationId;
-	}
-
-	public void setAllocationId(Integer allocationId) {
-		this.allocationId = allocationId;
-	}
 
 	public Integer getApprovedHours() {
 		return approvedHours;
@@ -76,5 +69,14 @@ public class Effort {
 	public void setModified(Date modified) {
 		this.modified = modified;
 	}
+
+	public Integer getPoRoleId() {
+		return poRoleId;
+	}
+
+	public void setPoRoleId(Integer poRoleId) {
+		this.poRoleId = poRoleId;
+	}
+
 	
 }

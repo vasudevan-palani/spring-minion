@@ -1,7 +1,5 @@
 package com.minion.model.view;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,23 +13,11 @@ public class UserProjectAllocation {
 	@Column(name = "emp_id")
 	private Integer empId;
 
-	@Column(name = "start_date")
-	private Date startDate;
-
-	@Column(name = "end_date")
-	private Date endDate;
-
-	@Column(name = "billing_rate")
-	private Integer billingRate;
-
 	@Column(name = "project_id")
 	private Integer projectId;
 
 	@Column(name = "user_id")
 	private Integer userId;
-
-	@Column(name = "allocation")
-	private Integer percent;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -44,29 +30,24 @@ public class UserProjectAllocation {
 
 	@Column(name = "name")
 	private String projectName;
+	
+	@Column(name = "po_role_id")
+	private String poRoleId;
 
-	public Date getStartDate() {
-		return startDate;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Integer getEmpId() {
+		return empId;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public Integer getBillingRate() {
-		return billingRate;
-	}
-
-	public void setBillingRate(Integer billingRate) {
-		this.billingRate = billingRate;
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
 
 	public Integer getProjectId() {
@@ -83,22 +64,6 @@ public class UserProjectAllocation {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-
-	public Integer getPercent() {
-		return percent;
-	}
-
-	public void setPercent(Integer percent) {
-		this.percent = percent;
-	}
-
-	public Integer getEmpId() {
-		return empId;
-	}
-
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
 	}
 
 	public String getFirstName() {
@@ -133,13 +98,13 @@ public class UserProjectAllocation {
 		this.projectName = projectName;
 	}
 
-	public Integer getId() {
-		return id;
+	public String getPoRoleId() {
+		return poRoleId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setPoRoleId(String poRoleId) {
+		this.poRoleId = poRoleId;
 	}
 	
-
+	
 }
