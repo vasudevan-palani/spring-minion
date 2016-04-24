@@ -74,7 +74,12 @@ public class PurchaseOrder {
 					poRoleUserDao.addUser(role.getId(),bean.getUserId());
 				}
 			}
-
+			else{
+				PORoleUser roleUser = poRoleUserDao.findByRoleId(role.getId());
+				if(roleUser != null){
+					poRoleUserDao.delete(role.getId());
+				}
+			}
 		}
 	}
 
@@ -82,13 +87,17 @@ public class PurchaseOrder {
 		List<PurchaseOrderSearch> pos = null;
 		List<PurchaseOrderBean> beans = new ArrayList<PurchaseOrderBean>();
 		if(serviceRequest.getPoNumber() != null && !serviceRequest.getPoNumber().equalsIgnoreCase("")){
+			
 			 pos = poSearchRepo.findByPoNumber(serviceRequest.getPoNumber());
+			 System.out.println(pos.size());
 		}
 		else if(serviceRequest.getProjectId() != null){
 			pos = poSearchRepo.findByProjectId(serviceRequest.getProjectId());
 		}
 		if(pos != null){
+			
 			for (PurchaseOrderSearch po : pos) {
+				
 				PurchaseOrderBean bean = new PurchaseOrderBean();
 				bean.importModel(po);
 				beans.add(bean);
@@ -142,14 +151,20 @@ public class PurchaseOrder {
 				poRoleRepo.save(pr);				
 			}
 			if(rb.getUserId() != null){
+				System.out.println("here");
 				PORoleUser roleUser = poRoleUserDao.findByRoleId(pr.getId());
-				System.out.println(roleUser.getRoleId());
 				if(roleUser == null){
 					poRoleUserDao.addUser(pr.getId(),rb.getUserId());
 				}
 				else{
 					roleUser.setUserId(rb.getUserId());
 					poRoleUserDao.update(roleUser);
+				}
+			}
+			else{
+				PORoleUser roleUser = poRoleUserDao.findByRoleId(pr.getId());
+				if(roleUser != null){
+					poRoleUserDao.delete(roleUser.getId());
 				}
 			}
 		}

@@ -45,4 +45,10 @@ public class PORoleUserDao {
 		return null;
 	}
 
+	public void delete(Integer id) {
+		if(id != null){
+			roleUserRepo.delete(id);			
+		}
+	}
+
 }
