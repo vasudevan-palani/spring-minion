@@ -132,7 +132,7 @@ public class InvoiceController extends BaseController {
 			
 			
 			response.setErrorcode(ErrorCodes.SUCCESS);
-			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.PO_UPDATE_SUCCESS));
+			response.setInfoMsg(errorMsgs.getMsg(ErrorCodes.INVOICE_UPDATE_SUCCESS));
 
 		} catch (MinionServiceException exception) {
 			response.setErrorcode(exception.getErrorCode());

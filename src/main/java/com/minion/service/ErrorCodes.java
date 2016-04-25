@@ -24,5 +24,7 @@ public class ErrorCodes {
 	public static final String INVOICE_ADD_SUCCESS = "600";
 
 	public static final String PO_DO_NOT_EXIST = "402";
+
+	public static final String INVOICE_UPDATE_SUCCESS = "610";
 	
 }

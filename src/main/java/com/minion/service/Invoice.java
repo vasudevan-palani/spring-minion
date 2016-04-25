@@ -190,7 +190,9 @@ public class Invoice {
 		
 		for (InvoiceUserBean invoiceUserBean : request.getInvoice().getInvoiceUsers()) {
 			com.minion.model.InvoiceUser invoiceUser = new com.minion.model.InvoiceUser();
-			Mapper.map(invoiceUserBean,invoiceUser);			
+			
+			Mapper.map(invoiceUserBean,invoiceUser);
+			invoiceUser.setInvoiceId(invoice.getId());
 			if(invoiceUserBean.getAdded()!=null && invoiceUserBean.getAdded() == 1){
 				invoiceUserDao.addInvoiceUser(invoiceUser);
 			}
