@@ -47,6 +47,9 @@ public class InvoiceSearchRepositoryImpl implements InvoiceSearchRepositoryCusto
 		if (Utils.notEmpty(statusId)) {
 			pdList.add(builder.equal(root.get("statusId"), statusId));
 		}
+		if (Utils.notEmpty(projectId)) {
+			pdList.add(builder.equal(root.get("projectId"), projectId));
+		}
 
 		query.where(builder.and(pdList.toArray(new Predicate[pdList.size()])));
 
